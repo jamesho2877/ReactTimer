@@ -5,9 +5,10 @@ var CountDownForm = React.createClass({
       e.preventDefault();
       var strSeconds = this.refs.seconds.value;
 
-      if (strSeconds.match(/^[0-9]*$/)){
+      if (strSeconds.length > 0 && strSeconds.match(/^[0-9]*$/)){
+         var intSeconds = parseInt(strSeconds, 10);
          this.refs.seconds.value = '';
-         this.props.onSetCountDown(parseInt(strSeconds, 10));
+         this.props.onSetCountDown(intSeconds > 3600 ? 3600 : intSeconds);
       }
    },
    render: function() {
